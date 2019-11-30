@@ -81,3 +81,7 @@ Error: Unable to access jarfile /app/words.jar
 ```
 and then the Dockerfile points to `/app/words.jar` => wrong
 `/app/albums.jar` => correct
+
+
+- Question: How do I update a deployment?
+- Answer: ?

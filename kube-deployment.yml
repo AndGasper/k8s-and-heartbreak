@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: agasper01/k8s-and-heartbreak-web
+        image: agasper01/k8s-and-heartbreak-web:latest
         ports:
         - containerPort: 80
         name: k8s-and-heartbreak-web

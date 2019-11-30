@@ -9,5 +9,23 @@
         <div class="container">
             <h1>K8s and Heartbreak</h1>
         </div>
+        <div class="container">
+            <img 
+                src="https://s3.amazonaws.com/k8s-and-heartbreak.com/k8s-and-heartbreak.png"
+                width="100%"
+            />
+        </div>
+        <div class="container" ng-controller="LabCtrl">
+            <!-- Tracks -->
+            <div class="tracks">
+                <span class="track" ng-bind="track.word"></span>
+                <span class="hostname" ng-bind="track.hostname"></span>
+            </div>
+            <!-- Lyrics -->
+            <div class="lyrics">
+                <span class="lyric" ng-bind="lyric.word"></span>
+                <span class="hostname" ng-bind="lyric.hostname"></span>
+            </div>
+        </div>
     </body>
 </html>
