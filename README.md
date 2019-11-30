@@ -29,3 +29,43 @@ WARNING: experimental environment variable DOCKER_ORCHESTRATOR is set. Please us
 
 
 Note: On windows, had to enable Kubernetes from the settings in docker
+
+
+
+## Kubernetes Debugging (Because why would anything work right the first time)
+- [Debug Application Cluster: Determine Reason For Pod Failure](https://kubernetes.io/docs/tasks/debug-application-cluster/determine-reason-pod-failure/)
+- [Kubernetes Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+
+- Having to debug the albums failure
+- Get the services
+```
+kubectl get services
+```
+
+```
+NAME            TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+albums-here     ClusterIP      None           <none>        55555/TCP        10m
+db              ClusterIP      None           <none>        55555/TCP        20m
+kubernetes      ClusterIP      10.96.0.1      <none>        443/TCP          22m
+web             ClusterIP      None           <none>        55555/TCP        20m
+web-published   LoadBalancer   10.110.251.1   localhost     8080:32681/TCP   20m
+```
+
+- Get the pods 
+- Input: 
+```
+kubectl get pods
+```
+- Output: 
+```
+kubectl get pods
+NAME                     READY   STATUS             RESTARTS   AGE
+albums-dc8878d5d-6v464   0/1     CrashLoopBackOff   4          2m39s
+albums-dc8878d5d-ln9m2   0/1     CrashLoopBackOff   4          2m39s
+albums-dc8878d5d-mkpcj   0/1     CrashLoopBackOff   4          2m39s
+albums-dc8878d5d-rmgbv   0/1     CrashLoopBackOff   4          2m39s
+albums-dc8878d5d-zx898   0/1     CrashLoopBackOff   4          2m39s
+db-bbb557c66-7cb6j       1/1     Running            0          26m
+web-8658499d7c-8g4db     1/1     Running            0          26m
+```

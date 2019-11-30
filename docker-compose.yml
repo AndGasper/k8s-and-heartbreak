@@ -20,3 +20,8 @@ services:
       - "8080:80"
 
 
+
+
+# agasper01/k8s-and-heartbreak-web:latest
+# agasper01/k8s-and-heartbreak-api:latest
+# agasper01/k8s-and-heartbreak-db:latest

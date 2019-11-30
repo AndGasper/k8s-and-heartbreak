@@ -33,18 +33,18 @@ spec:
             name: db
 ---
 apiVersion: v1
-kind:  Service
+kind: Service
 metadata:
   name: albums
   labels:
-    app: k8s-and-heartbreak-api
+    app: albums-api
 spec:
   ports:
-  - port: 8080
-    targetPort: 8080
-    name: api
+    - port: 8080
+      targetPort: 8080
+      name: api
   selector:
-    app: k8s-and-heartbreak-api
+    app: albums-api
   clusterIP: None
 ---
 apiVersion: apps/v1beta1
@@ -52,21 +52,22 @@ kind: Deployment
 metadata:
   name: albums
   labels:
-    app: k8s-and-heartbreak-api
+    app: albums-api
 spec:
   replicas: 5
   template:
     metadata:
       labels:
-        app: k8s-and-heartbreak-api
+        app: albums-api
     spec:
       containers:
-        - name: k8s-and-hearbreak
-          image: agasper01/k8s-and-heartbreak-api
-          ports:
-          - containerPort: 8080
-            name: api
+      - name: albums
+        image: agasper01/k8s-and-heartbreak-api
+        ports:
+        - containerPort: 8080
+          name: api
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
