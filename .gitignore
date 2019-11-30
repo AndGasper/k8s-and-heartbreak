@@ -1,0 +1,9 @@
+# Ignore terraform state files as they can have sensitive info
+**.tfstate
+
+# Ignore .terraform files because they have local symlinks and "stuff."
+**.terraform
+
+
+# Ignore environment files
+**.env

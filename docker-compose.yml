@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile-web
+      args:
+        buildno: "yeet"
+
+

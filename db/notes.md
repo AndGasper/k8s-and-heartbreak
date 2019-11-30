@@ -1,0 +1,1 @@
+- TEXT is the variable-length character string. Theoretically, text data is a character string with unlimited length.

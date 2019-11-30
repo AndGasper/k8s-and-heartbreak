@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  labels:
+    app: k8s-and-heartbreak
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: db
+  selector:
+    app: k8s-and-hearbreak-db
+  clusterIP: None
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: k8s-and-heartbreak
+spec:
+  template:
+    metadata:
+      labels:
+        app: k8s-and-heartbreak-db
+    spec:
+      containers:
+        - name: db
+          image: agasper01/k8s-and-heartbreak-db
+          ports:
+          - containerPort: 5432
+            name: db
+---
+apiVersion: v1
+kind:  Service
+metadata:
+  name: albums
+  labels:
+    app: k8s-and-heartbreak-api
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: api
+  selector:
+    app: k8s-and-heartbreak-api
+  clusterIP: None
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: albums
+  labels:
+    app: k8s-and-heartbreak-api
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: k8s-and-heartbreak-api
+    spec:
+      containers:
+        - name: k8s-and-hearbreak
+          image: agasper01/k8s-and-heartbreak-api
+          ports:
+          - containerPort: 8080
+            name: api
+---
