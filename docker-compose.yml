@@ -1,11 +1,22 @@
 version: "3.7"
 
 services:
+  db:
+    # where to find it
+    build: db
+    # what to call it
+    image: agasper01/k8s-and-heartbreak-db
+  
+  albums:
+    build: albums
+    image: agasper01/k8s-and-heartbreak-api
+    deploy:
+      replicas: 5
+
   web:
-    build:
-      context: ./web
-      dockerfile: Dockerfile-web
-      args:
-        buildno: "yeet"
+    build: web
+    image: agasper01/k8s-and-heartbreak-web
+    ports:
+      - "8080:80"
 
 

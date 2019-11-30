@@ -14,12 +14,16 @@ public class Main {
         Class.forName("org.postgresql.Driver");
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        server.createContext("/noun", handler(Suppliers.memoize(() -> randomWord("nouns"))));
-        server.createContext("/verb", handler(Suppliers.memoize(() -> randomWord("verbs"))));
-        server.createContext("/adjective", handler(Suppliers.memoize(() -> randomWord("adjectives"))));
+        server.createContext("/tracks", handler(Suppliers.memoize(() -> randomWord("tracks"))));
+        server.createContext("/lyrics", handler(Suppliers.memoize(() -> randomWord("lyrics"))));
         server.start();
     }
-
+    /**
+     * @name randomWord
+     * @description - Select and return a random entry from the desired table
+     * @table {string} - The name of the table to make a selection from.
+     * @return {string} - Random selection from the table
+     */
     private static String randomWord(String table) {
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://db:5432/postgres", "postgres", "")) {
             try (Statement statement = connection.createStatement()) {

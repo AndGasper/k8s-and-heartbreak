@@ -1,9 +1,0 @@
-FROM node:10
-EXPOSE 8080
-
-ARG buildno
-RUN echo "Build number: ${buildno}"
-
-COPY ./server.js .
-
-CMD node server.js
