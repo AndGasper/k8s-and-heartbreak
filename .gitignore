@@ -4,6 +4,8 @@
 # Ignore .terraform files because they have local symlinks and "stuff."
 **.terraform
 
+# Ignore backup file
+**terraform.tfstate.backup
 
 # Ignore environment files
 **.env
