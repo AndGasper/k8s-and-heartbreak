@@ -62,7 +62,7 @@ spec:
     spec:
       containers:
       - name: albums
-        image: agasper01/k8s-and-heartbreak-api
+        image: agasper01/k8s-and-heartbreak-api:latest
         ports:
         - containerPort: 8080
           name: api

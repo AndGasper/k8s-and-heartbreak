@@ -69,3 +69,15 @@ albums-dc8878d5d-zx898   0/1     CrashLoopBackOff   4          2m39s
 db-bbb557c66-7cb6j       1/1     Running            0          26m
 web-8658499d7c-8g4db     1/1     Running            0          26m
 ```
+
+- Get logs: `kubectl logs albums-dc8878d5d-mkpcj`
+- Example: 
+```
+Error: Unable to access jarfile /app/words.jar
+```
+- Why? 
+```
+<artifactId>albums</artifactId>
+```
+and then the Dockerfile points to `/app/words.jar` => wrong
+`/app/albums.jar` => correct
