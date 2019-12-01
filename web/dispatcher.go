@@ -13,8 +13,10 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
-	fwd := &forwarder{"words", 8080}
-	http.Handle("/words/", http.StripPrefix("/words", fwd))
+	fwd := &forwarder{"albums", 8080}
+	// odd.
+	http.Handle("/albums/", http.StripPrefix("/albums", fwd))
+	// Ah, so this is what serves the web directory.
 	http.Handle("/", http.FileServer(http.Dir("static")))
 
 	fmt.Println("Listening on port 80")
@@ -30,6 +32,7 @@ func (f *forwarder) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	addrs, err := net.LookupHost(f.host)
 	if err != nil {
 		log.Println("Error", err)
+		log.Println("ServeHTTP")
 		http.Error(w, err.Error(), 500)
 		return
 	}
@@ -57,6 +60,7 @@ func copy(url, ip string, w http.ResponseWriter) error {
 	w.Header().Set("source", ip)
 
 	buf, err := ioutil.ReadAll(resp.Body)
+	log.Println("copy function")
 	if err != nil {
 		return err
 	}
