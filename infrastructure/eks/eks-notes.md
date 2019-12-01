@@ -107,3 +107,20 @@ Error: : error upgrading connection: error dialing backend: dial tcp 172.17.nn.n
 - Subnets should be created via some type of iterator not just this endless "subnet_1", "subnet_2" nonsense.
 - Do something about this ridiculous copy/paste repetition I keep seeing at these various levels.
 - Investigate `locals` and flat structure as a means of addresing the previous point about repeated chunks of code.
+-  Update logs to not reference caller identity but be passed in as a variable.
+- Encrypt cloudwatch log data.
+
+
+
+```
+                            +----------------------+
+                            |Network Load Balancer |
+                            +----------------------+
+                                  | |                            
++----------------------+    +-------------------------------+
+|- DATA PLANE VPC      |    | - Control Plane VPC           |
+|  - AutoScaling Group |    |    - EKS Cluster Control Plane| 
+|    - EC2 Worker Nodes|    |                               |
+|                      |    |                               |
++----------------------+    +-------------------------------+
+```

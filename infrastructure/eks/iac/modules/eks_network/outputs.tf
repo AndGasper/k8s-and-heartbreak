@@ -16,6 +16,11 @@ output "control_plane_vpc_arn" {
     value = "${aws_vpc.control_plane_vpc.arn}"
 }
 
+output "control_plane_vpc_id" {
+    description = "The ID of the control plane vpc."
+    value = "${aws_vpc.control_plane_vpc.id}"
+}
+
 output "control_plane_vpc_subnets" {
     description = "The IDs of the subnets for the control plane."
     value = [
