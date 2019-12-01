@@ -54,3 +54,37 @@ And I think `chmod +x` is a bit broad. Or maybe more narrow. I don't feel like g
 ```
 local powershell_script=$(find_powershell_path)
 ```
+
+- Terraform notes
+- May be an example of a more advanced version.
+```
+variable "docker_ports" {
+  type = list(object({
+    internal = number
+    external = number
+    protocol = string
+  }))
+  default = [
+    {
+      internal = 8300
+      external = 8300
+      protocol = "tcp"
+    }
+  ]
+}
+
+```
+
+
+- Elastic Kubernetes Service (EKS)
+  - [EKS - Network Requirements](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
+
+```
+Docker runs in the 172.17.0.0/16 CIDR range in Amazon EKS clusters. We recommend that your cluster's VPC subnets do not overlap this range. Otherwise, you will receive the following error:
+Error: : error upgrading connection: error dialing backend: dial tcp 172.17.nn.nn:10250: getsockopt: no route to host
+```
+
+- Pretty sure this is what `locals` are for.
+
+- I got about a quarter of the way into writing the IAC and thought,
+> Wait, didn't this evening start with me trying to configure whatever the hell chocolatey is?
