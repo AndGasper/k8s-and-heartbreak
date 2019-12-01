@@ -5,7 +5,7 @@ resource "aws_vpc" "data_plane_vpc" {
     enable_dns_hostnames = true
 
     tags = {
-        Name = "Worker Node VPC"
+        Name = "Data Plane VPC"
         Project = "k8s-and-heartbreak"
         Plane = "data"
         "kubernetes.io/cluster/${var.cluster_name}" = "shared"
@@ -108,6 +108,32 @@ resource "aws_main_route_table_association" "data_plane_main_route_table" {
 # [x] VPC 2 Main Route table is the table that has the VPC Peering connection configured. 
 resource "aws_main_route_table_association" "control_plane_main_route_table" {
     vpc_id = "${aws_vpc.control_plane_vpc.id}"
+    route_table_id = "${aws_route_table.control_plane_route_table.id}"
+}
+
+# [ ] - Associate the Data Plane Subnets with the Data Plane Route Table
+# Get the subnets for the vpc
+data "aws_subnet_ids" "data_plane_subnets" {
+    vpc_id = "${aws_vpc.data_plane_vpc.id}"
+}
+
+resource "aws_route_table_association" "data_plane_route_table_subnets_association" {
+    count = "${length(data.aws_subnet_ids.data_plane_subnets.ids)}"
+    subnet_id = "${tolist(data.aws_subnet_ids.data_plane_subnets.ids)[count.index]}"
+    route_table_id = "${aws_route_table.data_plane_route_table.id}"
+}
+# inb4 it is really a set or a map. I tried to use a for_each but terraform kept telling me that's a reserved word.
+# like duh that's why I'm trying to use it!
+
+
+# [ ] - Associate the Control Plane Subnets with the Control Plane Route Table
+data "aws_subnet_ids" "control_plane_subnets" {
+    vpc_id = "${aws_vpc.control_plane_vpc.id}"
+}
+
+resource "aws_route_table_association" "control_plane_route_table_subnets_association" {
+    count = "${length(data.aws_subnet_ids.control_plane_subnets.ids)}"
+    subnet_id = "${tolist(data.aws_subnet_ids.control_plane_subnets.ids)[count.index]}"
     route_table_id = "${aws_route_table.control_plane_route_table.id}"
 }
 
