@@ -88,3 +88,22 @@ Error: : error upgrading connection: error dialing backend: dial tcp 172.17.nn.n
 
 - I got about a quarter of the way into writing the IAC and thought,
 > Wait, didn't this evening start with me trying to configure whatever the hell chocolatey is?
+
+
+## Installing eksctl on windows
+- Must be running as an administrator
+- Create virtual environment for python: `virtualenv -v python3.7 venv`
+- Activate the virtual environment: `source ./venv/Scripts/activate`
+- `chocolatey install -y eksctl aws-iam-authenticator`
+
+-[DNS Resolution for EKS Cluster Endpoints](https://aws.amazon.com/blogs/compute/enabling-dns-resolution-for-amazon-eks-cluster-endpoints/)
+
+
+>  EKS requires that you enable DNS hostnames and DNS resolution in each worker node VPC when you change the cluster endpoint access from public to private.  It is also a prerequisite for this solution and for all solutions that uses Route 53 private hosted zones.
+
+
+
+## Technical Debt
+- Subnets should be created via some type of iterator not just this endless "subnet_1", "subnet_2" nonsense.
+- Do something about this ridiculous copy/paste repetition I keep seeing at these various levels.
+- Investigate `locals` and flat structure as a means of addresing the previous point about repeated chunks of code.
