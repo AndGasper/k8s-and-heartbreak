@@ -124,3 +124,20 @@ Error: : error upgrading connection: error dialing backend: dial tcp 172.17.nn.n
 |                      |    |                               |
 +----------------------+    +-------------------------------+
 ```
+
+- Notes: After running a `terraform destroy`, and then trying to run `terraform destroy` again bumped into: 
+```
+Error: Invalid count argument
+
+  on modules\eks_network\main.tf line 121, in resource "aws_route_table_association" "data_plane_route_table_subnets_association":
+ 121:     count = "${length(data.aws_subnet_ids.data_plane_subnets.ids)}"
+
+The "count" value depends on resource attributes that cannot be determined
+until apply, so Terraform cannot predict how many instances will be created.
+To work around this, use the -target argument to first apply only the
+resources that the count depends on.
+
+```
+
+
+

@@ -1,0 +1,17 @@
+{
+    "rules": [
+        {
+            "rulePriority": 1,
+            "description": "Remove untagged images over 90 days old.",
+            "selection": {
+                    "tagStatus": "untagged",
+                    "countUnit": "days",
+                    "countType": "sinceImagePushed",
+                    "countNumber": 90
+            },
+            "action": {
+                "type": "expire"
+            }
+        }
+    ]
+}
