@@ -141,3 +141,7 @@ resources that the count depends on.
 
 
 
+
+
+## EKS Reference(s)
+- [Managing Cluster Authentication](https://docs.aws.amazon.com/eks/latest/userguide/managing-auth.html)

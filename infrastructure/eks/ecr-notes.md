@@ -32,4 +32,15 @@
 ```
 
 For IAM policies, it really does not matter if you have 1 account or 1000 accounts (maybe, I could see it getting weird), just build out the principals.
-That's kind of the nice part about IAM!
+That's kind of the nice part about IAM!/How Amazon has built it.
+
+
+```
+image_scanning_configuration {
+    scan_on_push = true
+}
+```
+
+- Yes, it will probably take longer, but let's be realistic, I am probably not going to sit down and write some customer scanner logic for docker images. Someone else is already fighting the good fight.
+    - [Elastic Container Registry: Image  Scanning](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html)
+    - [ECR Events and EventBridge](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr-eventbridge.html)

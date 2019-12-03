@@ -6,3 +6,5 @@
 - [ ] Encrypt cloudwatch log data.
 - [ ] Find a better way than just copy/pasting out the modules you do not want to deploy...
 - [ ] Investigate kitchen sink style exports/more complex export types from a module + the rammifications/implementation details of how the values are actually exposed, i.e. would I have to load a chonker into memory just to pick off one value? 
+- [ ] Investigate encryption context restrictions for kms_grants
+- [ ] Correct for naive single account implementation references.

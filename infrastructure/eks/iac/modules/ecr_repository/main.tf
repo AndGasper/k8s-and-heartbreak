@@ -1,6 +1,10 @@
 resource "aws_ecr_repository" "ecr_repository" {
     name = "${var.ecr_repository_name}"
     image_tag_mutability = "IMMUTABLE"
+    # Related to 
+    image_scanning_configuration {
+        scan_on_push = true
+    }
     tags = {
         Name = "${var.ecr_repository_name}"
         Project = "${var.ecr_repository_name}"
